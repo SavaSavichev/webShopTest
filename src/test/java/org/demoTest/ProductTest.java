@@ -72,7 +72,7 @@ public class ProductTest extends BaseTest {
         String actualMessageText = new MainPage(getDriver())
                 .getHeader()
                 .clickLoginButton()
-                .logInUser(email, password)
+                .login(email, password)
                 .clickLaptopFromFeatured()
                 .clickAddReviewButton()
                 .addReview(reviewTitle, reviewText)

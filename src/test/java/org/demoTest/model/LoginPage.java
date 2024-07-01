@@ -14,16 +14,28 @@ public class LoginPage extends BaseMainHeaderPage<CatalogPage> {
     private WebElement passwordInput;
 
     @FindBy(xpath = "//input[@class='button-1 login-button']")
-    private WebElement logInButton;
+    private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public MainPage logInUser(String email, String password) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        logInButton.click();
+    public void enterEmail(String email) {
+        type(emailInput, email);
+    }
+
+    public void enterPassword(String password) {
+        type(passwordInput, password);
+    }
+
+    public void clickLogin() {
+        click(loginButton);
+    }
+
+    public MainPage login(String email, String password) {
+        enterEmail(email);
+        enterPassword(password);
+        clickLogin();
         return new MainPage(getDriver());
     }
 }
