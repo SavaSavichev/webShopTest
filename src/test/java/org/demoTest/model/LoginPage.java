@@ -20,22 +20,10 @@ public class LoginPage extends BaseMainHeaderPage<CatalogPage> {
         super(driver);
     }
 
-    public void enterEmail(String email) {
-        type(emailInput, email);
-    }
-
-    public void enterPassword(String password) {
-        type(passwordInput, password);
-    }
-
-    public void clickLogin() {
-        click(loginButton);
-    }
-
-    public MainPage login(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        clickLogin();
+    public MainPage loginUser(String email, String password) {
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        loginButton.click();
         return new MainPage(getDriver());
     }
 }

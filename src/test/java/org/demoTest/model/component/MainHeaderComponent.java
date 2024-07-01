@@ -46,7 +46,6 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     public MainPage clickLogo() {
         logo.click();
         return new MainPage(getDriver());
-
     }
 
     public RegistrationPage clickRegister() {

@@ -37,7 +37,7 @@ public class UserTest extends BaseTest {
         String actualAccountEmail = new MainPage(getDriver())
                 .getHeader()
                 .clickLoginButton()
-                .login(EMAIL, PASSWORD)
+                .loginUser(EMAIL, PASSWORD)
                 .getHeader()
                 .getAccountEmail();
 
@@ -51,7 +51,7 @@ public class UserTest extends BaseTest {
         String actualLinkText = new MainPage(getDriver())
                 .getHeader()
                 .clickLoginButton()
-                .login(EMAIL, PASSWORD)
+                .loginUser(EMAIL, PASSWORD)
                 .getHeader()
                 .clickLogOutButton()
                 .getHeader()
