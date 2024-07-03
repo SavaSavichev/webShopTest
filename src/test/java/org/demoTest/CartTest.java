@@ -1,5 +1,6 @@
 package org.demoTest;
 
+import io.qameta.allure.*;
 import org.demoTest.model.CartPage;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
@@ -12,6 +13,10 @@ public class CartTest extends BaseTest {
     private final static String PASSWORD = "123456";
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verification that a user is able to navigate from 'Dashboard' -> 'Manage Jenkins' to the 'Reload " +
+            "Configuration from Disk' page")
     public void testAddLaptopToCardFromMainPage() {
         final String itemName = "14.1-inch Laptop";
 
