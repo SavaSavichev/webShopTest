@@ -13,21 +13,21 @@ public class ProductTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Feature("Function")
+    @Feature("UI")
     @Description("Verifying that the user sees the free shipping label on the product page")
     public void testFreeShippingLabelDisplay() {
         boolean isFreeShippingLabelDisplay = new MainPage(getDriver())
                 .clickOwnCheapComputer()
                 .getFreeShipping();
 
-        Assert.assertTrue(isFreeShippingLabelDisplay);
+        Assert.assertTrue(isFreeShippingLabelDisplay, "The free shipping label does not appear on the product page!");
     }
 
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
     @Description("Verifying that the user can return to the main page from the product page")
-    public void testCheckBackToMainPage() {
+    public void testReturnBackToMainPage() {
         final String welcomeText = "Welcome to our store";
 
         String textFromMainPage = new MainPage(getDriver())
