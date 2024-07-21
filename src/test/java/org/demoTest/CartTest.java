@@ -15,10 +15,9 @@ public class CartTest extends BaseTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
-    @Description("Verification that a user is able to navigate from 'Dashboard' -> 'Manage Jenkins' to the 'Reload " +
-            "Configuration from Disk' page")
+    @Description("Verifying that the user can add an item(laptop) to the cart from the main page")
     public void testAddLaptopToCardFromMainPage() {
-        final String itemName = "14.1-inch Laptop!";
+        final String itemName = "14.1-inch Laptop";
 
         String itemInCartName = new MainPage(getDriver())
                 .clickLaptopFromFeatured()
@@ -31,6 +30,9 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can add an item(laptop) to the cart from the product page")
     public void testAddLaptopToCardFromProductPage() {
         final String itemName = "14.1-inch Laptop";
 
@@ -47,6 +49,9 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can increase the number of items in the cart")
     public void testIncreaseQuantity() {
         final int itemQuantity = 2;
 
@@ -63,6 +68,9 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the total price will increase as the number of items in the cart increases")
     public void testIncreaseTotalPriceDependsQuantity() {
         final int itemQuantity = 2;
 
@@ -84,6 +92,9 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user sees a warning box on the cart page")
     public void testWarningTermsBox() {
         final String expectedResultText = "Please accept the terms of service before the next step.";
 

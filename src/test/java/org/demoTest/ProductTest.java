@@ -1,5 +1,9 @@
 package org.demoTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
@@ -8,6 +12,9 @@ import org.testng.annotations.Test;
 public class ProductTest extends BaseTest {
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user sees the free shipping label on the product page")
     public void testFreeShippingLabelDisplay() {
         boolean isFreeShippingLabelDisplay = new MainPage(getDriver())
                 .clickOwnCheapComputer()
@@ -17,6 +24,9 @@ public class ProductTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can return to the main page from the product page")
     public void testCheckBackToMainPage() {
         final String welcomeText = "Welcome to our store";
 
@@ -30,6 +40,9 @@ public class ProductTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can set the size of product(shoes) on the product page")
     public void testSetShoeSize() {
         final String size = "10";
 
@@ -46,6 +59,9 @@ public class ProductTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can set the color of product(shoes) on the product page")
     public void testSetShoeColor() {
         final String color = "Green";
 
@@ -62,6 +78,9 @@ public class ProductTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Verifying that the user can add a review about the product on the review page")
     public void testAddReview() {
         final String email = "testovoemylo@mulo.com";
         final String password = "123456";

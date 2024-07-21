@@ -1,5 +1,9 @@
 package org.demoTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
@@ -7,6 +11,9 @@ import org.testng.annotations.Test;
 
 public class WishlistTest extends BaseTest {
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to add a product to a wishlist from the product page")
     public void testAddItemToWishList() {
         final String expectedProductName = "Smartphone";
 
@@ -23,6 +30,9 @@ public class WishlistTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to remove a product from the wishlist from the wishlist page")
     public void testDeleteItemFromWishList() {
         final String expectedText = "The wishlist is empty!";
 
@@ -41,6 +51,9 @@ public class WishlistTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to add an item from the wishlist to the cart")
     public void testAddItemFromWishListToCart() {
         final String expectedText = "Black & White Diamond Heart";
 
@@ -58,6 +71,9 @@ public class WishlistTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to increase the quantity of a product on the wishlist page")
     public void testIncreaseQuantity() {
         final int itemQuantity = 2;
 

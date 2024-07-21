@@ -1,5 +1,9 @@
 package org.demoTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.demoTest.runner.TestUtils;
@@ -14,6 +18,9 @@ public class UserTest extends BaseTest {
     private final static String PASSWORD = "123456";
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to register from the main page")
     public void testRegisterNewUser() {
         final String expectedResultText = "Your registration completed";
 
@@ -33,6 +40,9 @@ public class UserTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to log in from the main page")
     public void testLogInUser() {
         String actualAccountEmail = new MainPage(getDriver())
                 .getHeader()
@@ -45,6 +55,9 @@ public class UserTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
+    @Description("Checking the user's ability to log out from the main page")
     public void testLogOutUser() {
         final String expectedResultText = "Register";
 
