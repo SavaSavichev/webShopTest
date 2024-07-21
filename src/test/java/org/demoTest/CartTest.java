@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
     @Description("Verification that a user is able to navigate from 'Dashboard' -> 'Manage Jenkins' to the 'Reload " +
             "Configuration from Disk' page")
     public void testAddLaptopToCardFromMainPage() {
-        final String itemName = "14.1-inch Laptop";
+        final String itemName = "14.1-inch Laptop!";
 
         String itemInCartName = new MainPage(getDriver())
                 .clickLaptopFromFeatured()
