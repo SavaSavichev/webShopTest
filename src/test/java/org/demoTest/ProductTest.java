@@ -45,13 +45,12 @@ public class ProductTest extends BaseTest {
     @Feature("Function")
     @Description("Verifying that the user can set the size of product(shoes) on the product page")
     public void testSetShoeSize() {
-        final String value = "27";
         final String size = "10";
 
         String actualProductSize = new MainPage(getDriver())
                 .clickApparelShoesButtonSideMenu()
                 .clickSneakersButton()
-                .setShoeSize(value)
+                .setShoeSize(size)
                 .addToCart()
                 .getHeader()
                 .clickShoppingCart()
