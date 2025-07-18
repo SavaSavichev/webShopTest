@@ -40,7 +40,6 @@ public class UserTest extends BaseTest {
         Assert.assertEquals(actualResultText, expectedResultText);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.CRITICAL)
     @Feature("User Registration")
