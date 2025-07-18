@@ -43,13 +43,7 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     public ProductPage setShoeSize(String size) {
         getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
         Select sizeSelect = new Select(shoeSize);
-        sizeSelect.selectByVisibleText(size);
-
-
-        List<WebElement> allOptions = sizeSelect.getOptions();
-        for (WebElement option : allOptions) {
-            System.out.println("Option: " + option.getText());
-        }
+        sizeSelect.selectByVisibleText("10");
 
         //getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
         return this;
