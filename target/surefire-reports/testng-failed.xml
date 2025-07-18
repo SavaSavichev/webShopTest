@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Surefire suite]" verbose="0">
+  <test thread-count="5" name="Surefire test(failed)" verbose="0">
+    <classes>
+      <class name="org.demoTest.ProductTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="testSetShoeSize"/>
+          <include name="afterMethod"/>
+          <include name="testSetShoeColor"/>
+        </methods>
+      </class> <!-- org.demoTest.ProductTest -->
+      <class name="org.demoTest.CartTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="testIncreaseQuantity"/>
+          <include name="testAddLaptopToCardFromProductPage"/>
+          <include name="testIncreaseTotalPriceDependsQuantity"/>
+          <include name="afterMethod"/>
+          <include name="testAddLaptopToCardFromMainPage"/>
+        </methods>
+      </class> <!-- org.demoTest.CartTest -->
+      <class name="org.demoTest.WishlistTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="testAddItemToWishList"/>
+          <include name="testIncreaseQuantity"/>
+          <include name="testAddItemFromWishListToCart"/>
+          <include name="afterMethod"/>
+          <include name="testDeleteItemFromWishList"/>
+        </methods>
+      </class> <!-- org.demoTest.WishlistTest -->
+    </classes>
+  </test> <!-- Surefire test(failed) -->
+</suite> <!-- Failed suite [Surefire suite] -->

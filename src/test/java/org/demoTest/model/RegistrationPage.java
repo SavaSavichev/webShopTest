@@ -31,6 +31,9 @@ public class RegistrationPage extends BaseMainHeaderPage<RegistrationPage> {
     @FindBy(xpath = "//div[@class = 'result']")
     private WebElement confirmationMessage;
 
+    @FindBy(xpath = "//div[@class='validation-summary-errors']")
+    private WebElement errorMessage;
+
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
@@ -76,6 +79,9 @@ public class RegistrationPage extends BaseMainHeaderPage<RegistrationPage> {
 
     public String getRegistrationConfirmationMessage() {
         return confirmationMessage.getText();
+    }
 
+    public String getRegistrationErrorMessage() {
+        return errorMessage.getText();
     }
 }

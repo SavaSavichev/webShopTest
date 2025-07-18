@@ -40,6 +40,28 @@ public class UserTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("User Registration")
+    @Description("Verify that the system shows an error when trying to register with an already registered email")
+    public void testRegisterNewUserWithExistingEmail() {
+        final String expectedErrorText = "The specified email already exists";
+
+        String actualErrorText = new MainPage(getDriver())
+                .getHeader()
+                .clickRegister()
+                .clickGenderMale()
+                .enterFirstName(FIRST_NAME)
+                .enterLastName(LAST_NAME)
+                .enterEmail(EMAIL)
+                .enterPassword(PASSWORD)
+                .enterConfirmPassword(PASSWORD)
+                .clickRegisterButton()
+                .getRegistrationErrorMessage();
+
+        Assert.assertEquals(actualErrorText, expectedErrorText);
+    }
+
+    @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
     @Description("Checking the user's ability to log in from the main page")
