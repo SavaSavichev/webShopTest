@@ -4,6 +4,8 @@ import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CartPage extends BaseMainHeaderPage<CartPage> {
 
@@ -45,7 +47,7 @@ public class CartPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getProductColor() {
-        String prodAtt = productsAttributes.getText();
+        String prodAtt = getWait5().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
         return prodAtt.substring(prodAtt.lastIndexOf(":") + 1).trim();
     }
 
