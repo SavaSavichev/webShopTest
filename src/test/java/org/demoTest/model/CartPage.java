@@ -38,7 +38,7 @@ public class CartPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getProductName() {
-        return firstProductName.getText();
+        return getWait5().until(ExpectedConditions.visibilityOf(firstProductName)).getText();
     }
 
     public String getProductSize() {

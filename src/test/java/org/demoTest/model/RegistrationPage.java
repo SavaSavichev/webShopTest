@@ -79,7 +79,7 @@ public class RegistrationPage extends BaseMainHeaderPage<RegistrationPage> {
     }
 
     public String getRegistrationConfirmationMessage() {
-        return confirmationMessage.getText();
+        return getWait5().until(ExpectedConditions.visibilityOf(confirmationMessage)).getText();
     }
 
     public String getRegistrationErrorMessage() {
