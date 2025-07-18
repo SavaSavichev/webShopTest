@@ -39,7 +39,8 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage setShoeSize(String size) {
-        Select sizeSelect = new Select(getWait5().until(ExpectedConditions.visibilityOf(shoeSize)));
+        getWait5().until(ExpectedConditions.visibilityOf(shoeSize));
+        Select sizeSelect = new Select(shoeSize);
         sizeSelect.selectByVisibleText(size);
         return this;
     }
