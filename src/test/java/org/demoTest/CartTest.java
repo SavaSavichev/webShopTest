@@ -101,6 +101,8 @@ public class CartTest extends BaseTest {
 
         String actualAlertText = new MainPage(getDriver())
                 .getHeader()
+                .clickLogOutButton()
+                .getHeader()
                 .clickLoginButton()
                 .loginUser(EMAIL, PASSWORD)
                 .clickLaptopFromFeatured()
