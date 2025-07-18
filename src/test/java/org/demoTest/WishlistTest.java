@@ -30,7 +30,6 @@ public class WishlistTest extends BaseTest {
         Assert.assertEquals(actualProductName, expectedProductName);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
