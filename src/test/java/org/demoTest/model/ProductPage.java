@@ -42,11 +42,17 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage setShoeSize(String size) {
-        getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
+        getWait10().until(ExpectedConditions.elementToBeClickable(shoeSize));
+        Select sizeSelect = new Select(shoeSize);
 
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('change'));",
-                shoeSize, size);
+        sizeSelect.selectByVisibleText(size);
+
+        if (!sizeSelect.getFirstSelectedOption().getText().equals(size)) {
+            sizeSelect.selectByVisibleText(size);
+        }
+
+        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
+
         return this;
     }
 
