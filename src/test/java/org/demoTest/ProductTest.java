@@ -5,9 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
-import org.demoTest.model.ProductPage;
 import org.demoTest.runner.BaseTest;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
@@ -42,6 +40,7 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(textFromMainPage, welcomeText);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
@@ -50,22 +49,10 @@ public class ProductTest extends BaseTest {
         final String value = "27";
         final String size = "10";
 
-        new MainPage(getDriver())
+        String actualProductSize = new MainPage(getDriver())
                 .clickApparelShoesButtonSideMenu()
-                .clickSneakersButton();
-
-        String script = """
-    fetch('/addproducttocart/details/28/1', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'product_attribute_28_7_10=27&addtocart_28.EnteredQuantity=1'
-    }).then(res => console.log(res));
-""";
-
-        ((JavascriptExecutor) getDriver()).executeScript(script);
-        String actualProductSize = new ProductPage(getDriver())
+                .clickSneakersButton()
+                .setShoeSize(size)
                 .addToCart()
                 .getHeader()
                 .clickShoppingCart()

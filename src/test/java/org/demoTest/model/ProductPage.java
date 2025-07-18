@@ -2,15 +2,11 @@ package org.demoTest.model;
 
 import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
 
 public class ProductPage extends BaseMainHeaderPage<ProductPage> {
 
@@ -42,17 +38,12 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
         return freeShipping.getText().contains("Free shipping");
     }
 
-    public ProductPage setShoeSize(String value) {
+    public ProductPage setShoeSize(String size) {
         getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
+        Select sizeSelect = new Select(shoeSize);
+        sizeSelect.selectByVisibleText(size);
 
-        String script = """
-        arguments[0].value = arguments[1];
-        arguments[0].dispatchEvent(new Event('input', { bubbles: true }));
-        arguments[0].dispatchEvent(new Event('change', { bubbles: true }));
-    """;
-
-        ((JavascriptExecutor) getDriver()).executeScript(script, shoeSize, value);
-
+        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
         return this;
     }
 
