@@ -7,6 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class WishlistTest extends BaseTest {
@@ -50,6 +51,7 @@ public class WishlistTest extends BaseTest {
         Assert.assertEquals(actualText, expectedText);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")

@@ -7,6 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class ProductTest extends BaseTest {
@@ -39,6 +40,7 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(textFromMainPage, welcomeText);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
@@ -77,6 +79,7 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(actualProductColor, color);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")

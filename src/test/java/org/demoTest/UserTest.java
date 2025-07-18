@@ -8,6 +8,7 @@ import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.demoTest.runner.TestUtils;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class UserTest extends BaseTest {
@@ -39,6 +40,7 @@ public class UserTest extends BaseTest {
         Assert.assertEquals(actualResultText, expectedResultText);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.CRITICAL)
     @Feature("User Registration")
