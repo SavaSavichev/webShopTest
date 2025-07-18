@@ -92,7 +92,6 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(actualTotalPrice, expectedTotalPrice);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
