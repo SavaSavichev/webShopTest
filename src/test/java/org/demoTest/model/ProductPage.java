@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class ProductPage extends BaseMainHeaderPage<ProductPage> {
 
     @FindBy(xpath = "//input[@class='button-1 add-to-cart-button']")
@@ -43,10 +45,10 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
         Select sizeSelect = new Select(shoeSize);
         sizeSelect.selectByVisibleText(size);
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+
+        List<WebElement> allOptions = sizeSelect.getOptions();
+        for (WebElement option : allOptions) {
+            System.out.println("Option: " + option.getText());
         }
 
         //getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
