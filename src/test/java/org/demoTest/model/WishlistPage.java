@@ -34,7 +34,7 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getProductName() {
-        return productName.getText();
+        return getWait5().until(ExpectedConditions.visibilityOf(productName)).getText();
     }
 
     public WishlistPage removeItemFromWishlist() {

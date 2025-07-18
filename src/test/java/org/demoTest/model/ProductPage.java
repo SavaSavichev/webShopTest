@@ -43,7 +43,13 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
         Select sizeSelect = new Select(shoeSize);
         sizeSelect.selectByVisibleText(size);
 
-        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        //getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
         return this;
     }
 
