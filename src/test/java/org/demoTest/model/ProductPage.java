@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -43,16 +44,19 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
 
     public ProductPage setShoeSize(String size) {
         getWait10().until(ExpectedConditions.elementToBeClickable(shoeSize));
-        Select sizeSelect = new Select(shoeSize);
 
-        sizeSelect.selectByVisibleText(size);
+        Select select = new Select(shoeSize);
 
-        if (!sizeSelect.getFirstSelectedOption().getText().equals(size)) {
-            sizeSelect.selectByVisibleText(size);
-        }
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", shoeSize);
 
-        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
+        WebElement optionToClick = select.getOptions().stream()
+                .filter(o -> o.getText().equals(size))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Size not found: " + size));
 
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(shoeSize).click().perform();
+        actions.moveToElement(optionToClick).click().perform();
         return this;
     }
 
