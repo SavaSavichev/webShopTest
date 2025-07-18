@@ -54,9 +54,8 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Size not found: " + size));
 
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(shoeSize).click().perform();
-        actions.moveToElement(optionToClick).click().perform();
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", shoeSize);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", optionToClick);
         return this;
     }
 
