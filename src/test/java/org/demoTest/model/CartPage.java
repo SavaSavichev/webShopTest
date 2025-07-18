@@ -42,12 +42,12 @@ public class CartPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getProductSize() {
-        String prodAtt = getWait5().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
+        String prodAtt = getWait10().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
         return prodAtt.substring(prodAtt.indexOf(" "), prodAtt.indexOf("C")).trim();
     }
 
     public String getProductColor() {
-        String prodAtt = getWait5().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
+        String prodAtt = getWait10().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
         return prodAtt.substring(prodAtt.lastIndexOf(":") + 1).trim();
     }
 
