@@ -42,7 +42,7 @@ public class CartPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getProductSize() {
-        String prodAtt = productsAttributes.getText();
+        String prodAtt = getWait5().until(ExpectedConditions.visibilityOf(productsAttributes)).getText();
         return prodAtt.substring(prodAtt.indexOf(" "), prodAtt.indexOf("C")).trim();
     }
 
