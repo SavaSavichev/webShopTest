@@ -2,6 +2,7 @@ package org.demoTest.model;
 
 import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,10 +43,10 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
 
     public ProductPage setShoeSize(String size) {
         getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
-        Select sizeSelect = new Select(shoeSize);
-        sizeSelect.selectByVisibleText("10");
 
-        //getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('change'));",
+                shoeSize, size);
         return this;
     }
 
