@@ -81,7 +81,6 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(actualProductColor, color);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
