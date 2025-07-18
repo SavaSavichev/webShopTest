@@ -42,6 +42,8 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
         getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
         Select sizeSelect = new Select(shoeSize);
         sizeSelect.selectByVisibleText(size);
+
+        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(size));
         return this;
     }
 
