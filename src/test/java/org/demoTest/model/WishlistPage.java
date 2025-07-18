@@ -4,6 +4,7 @@ import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WishlistPage extends BaseMainHeaderPage<CartPage> {
 
@@ -47,7 +48,7 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getEmptyWishlistText() {
-        return emptyWishlistText.getText();
+        return getWait5().until(ExpectedConditions.visibilityOf(emptyWishlistText)).getText();
     }
 
     public CartPage addToCartFromWishlist() {
