@@ -4,6 +4,7 @@ import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
 
@@ -32,7 +33,7 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     }
 
     public ProductPage clickSneakersButton() {
-        sneakersButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(sneakersButton)).click();
         return new ProductPage(getDriver());
     }
 
