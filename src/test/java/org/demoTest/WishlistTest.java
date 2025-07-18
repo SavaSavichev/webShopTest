@@ -51,7 +51,6 @@ public class WishlistTest extends BaseTest {
         Assert.assertEquals(actualText, expectedText);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
