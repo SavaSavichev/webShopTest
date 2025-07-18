@@ -49,6 +49,8 @@ public class UserTest extends BaseTest {
 
         String actualErrorText = new MainPage(getDriver())
                 .getHeader()
+                .clickLogOutButton()
+                .getHeader()
                 .clickRegister()
                 .clickGenderMale()
                 .enterFirstName(FIRST_NAME)
