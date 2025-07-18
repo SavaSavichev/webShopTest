@@ -42,32 +42,16 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
         return freeShipping.getText().contains("Free shipping");
     }
 
-    public ProductPage setShoeSize(String size) {
+    public ProductPage setShoeSize(String value) {
         getWait10().until(ExpectedConditions.visibilityOf(shoeSize));
 
-        Select select = new Select(shoeSize);
-        int indexToSelect = -1;
-        List<WebElement> options = select.getOptions();
-        for (int i = 0; i < options.size(); i++) {
-            if (options.get(i).getText().trim().equals(size)) {
-                indexToSelect = i;
-                break;
-            }
-        }
-
-        if (indexToSelect == -1) {
-            throw new RuntimeException("Size option not found: " + size);
-        }
-
         String script = """
-        arguments[0].selectedIndex = arguments[1];
+        arguments[0].value = arguments[1];
         arguments[0].dispatchEvent(new Event('input', { bubbles: true }));
         arguments[0].dispatchEvent(new Event('change', { bubbles: true }));
     """;
 
-        ((JavascriptExecutor) getDriver()).executeScript(script, shoeSize, indexToSelect);
-
-        getWait5().until(driver -> new Select(shoeSize).getFirstSelectedOption().getText().equals(size));
+        ((JavascriptExecutor) getDriver()).executeScript(script, shoeSize, value);
 
         return this;
     }
