@@ -11,7 +11,7 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     @FindBy(xpath = "//img[@alt='Picture for category Notebooks']")
     private WebElement notebooksButton;
 
-    @FindBy(xpath = "//img[@alt='Picture of Blue and green Sneaker']")
+    @FindBy(xpath = "//h2/a[text()='Blue and green Sneaker']")
     private WebElement sneakersButton;
 
     @FindBy(xpath = "//div[@class='details']//a[text()='14.1-inch Laptop']")
