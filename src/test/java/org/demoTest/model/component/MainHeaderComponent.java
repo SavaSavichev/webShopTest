@@ -6,6 +6,7 @@ import org.demoTest.model.base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderComponent<Page> {
 
@@ -49,7 +50,7 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     }
 
     public RegistrationPage clickRegister() {
-        registerButton.click();
+        getWait2().until(ExpectedConditions.elementToBeClickable(registerButton)).click();
         return new RegistrationPage(getDriver());
     }
 
