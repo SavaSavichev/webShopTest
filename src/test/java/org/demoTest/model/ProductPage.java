@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BaseMainHeaderPage<ProductPage> {
@@ -29,7 +30,7 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage addToCart() {
-        addToCardButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(addToCardButton)).click();
         return this;
     }
 
@@ -38,13 +39,14 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage setShoeSize(String size) {
-        Select sizeSelect = new Select(shoeSize);
+        Select sizeSelect = new Select(getWait5().until(ExpectedConditions.visibilityOf(shoeSize)));
         sizeSelect.selectByVisibleText(size);
         return this;
     }
 
     public ProductPage setShoeColor(String color) {
-        getDriver().findElement(By.xpath("//span[@title='" + color + "']")).click();
+        getWait5().until(ExpectedConditions.visibilityOf(getDriver().findElement(
+                By.xpath("//span[@title='" + color + "']")))).click();
         return this;
     }
 
