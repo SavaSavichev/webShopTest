@@ -80,7 +80,7 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     }
 
     public LoginPage clickLoginButton() {
-        logInButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(logInButton)).click();
         return new LoginPage(getDriver());
     }
 
