@@ -33,7 +33,7 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     }
 
     public ProductPage clickSneakersButton() {
-        getWait5().until(ExpectedConditions.elementToBeClickable(sneakersButton)).click();
+        getWait5().until(ExpectedConditions.visibilityOf(sneakersButton)).click();
         return new ProductPage(getDriver());
     }
 
