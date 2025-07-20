@@ -52,7 +52,7 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public CartPage addToCartFromWishlist() {
-        addToCartCheckBox.click();
+        getWait5().until(ExpectedConditions.visibilityOf(addToCartCheckBox)).click();
         addToCartButton.click();
         return new CartPage(getDriver());
     }

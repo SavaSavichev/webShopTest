@@ -53,6 +53,7 @@ public abstract class BaseTest {
         }
 
         clearCartIfNeeded();
+        clearWishlistIfNeeded();
 
         driver.quit();
     }
@@ -102,6 +103,23 @@ public abstract class BaseTest {
             }
         } catch (Exception e) {
             System.out.println("Cart cleanup failed: " + e.getMessage());
+        }
+    }
+
+    public void clearWishlistIfNeeded() {
+        getDriver().get("https://demowebshop.tricentis.com/wishlist");
+        try {
+            List<WebElement> removeCheckboxes = getDriver().findElements(By.name("removefromcart"));
+            if (!removeCheckboxes.isEmpty()) {
+                for (WebElement checkbox : removeCheckboxes) {
+                    if (!checkbox.isSelected()) {
+                        checkbox.click();
+                    }
+                }
+                getDriver().findElement(By.name("updatecart")).click();
+            }
+        } catch (Exception e) {
+            System.out.println("Wishlist cleanup failed: " + e.getMessage());
         }
     }
 }
