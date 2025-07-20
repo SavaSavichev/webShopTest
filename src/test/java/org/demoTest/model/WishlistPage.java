@@ -48,7 +48,7 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getEmptyWishlistText() {
-        return getWait5().until(ExpectedConditions.visibilityOf(emptyWishlistText)).getText();
+        return getWait10().until(ExpectedConditions.visibilityOf(emptyWishlistText)).getText();
     }
 
     public CartPage addToCartFromWishlist() {

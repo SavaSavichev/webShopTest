@@ -54,7 +54,7 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage addToWishList() {
-        addToWishListButton.click();
+        getWait5().until(ExpectedConditions.visibilityOf(addToWishListButton)).click();
         return this;
     }
 
