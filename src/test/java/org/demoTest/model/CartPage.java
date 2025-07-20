@@ -53,7 +53,7 @@ public class CartPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public CartPage setItemQuantity(int quantity) {
-        quantityInput.clear();
+        getWait5().until(ExpectedConditions.visibilityOf(quantityInput)).clear();
         quantityInput.sendKeys(String.valueOf(quantity));
         return this;
     }
