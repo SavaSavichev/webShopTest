@@ -4,6 +4,7 @@ import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BaseMainHeaderPage<CatalogPage> {
 
@@ -21,7 +22,7 @@ public class LoginPage extends BaseMainHeaderPage<CatalogPage> {
     }
 
     public MainPage loginUser(String email, String password) {
-        emailInput.sendKeys(email);
+        getWait10().until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
         passwordInput.sendKeys(password);
         loginButton.click();
         return new MainPage(getDriver());

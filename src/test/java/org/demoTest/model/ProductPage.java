@@ -25,13 +25,21 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     @FindBy(xpath = "//a[text()='Add your review']")
     private WebElement addReviewButton;
 
+    @FindBy(xpath = "//p[@class='content']")
+    private WebElement noticeBar;
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
 
     public ProductPage addToCart() {
         getWait5().until(ExpectedConditions.elementToBeClickable(addToCardButton)).click();
+        waitNoticeBarIsVisible();
         return this;
+    }
+
+    private void waitNoticeBarIsVisible() {
+        getWait5().until(ExpectedConditions.visibilityOf(noticeBar));
     }
 
     public boolean getFreeShipping() {
@@ -54,7 +62,8 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage addToWishList() {
-        getWait5().until(ExpectedConditions.visibilityOf(addToWishListButton)).click();
+        getWait10().until(ExpectedConditions.elementToBeClickable(addToWishListButton)).click();
+        waitNoticeBarIsVisible();
         return this;
     }
 

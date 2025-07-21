@@ -29,6 +29,9 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     @FindBy(xpath = "//input[@class='qty-input']")
     private WebElement quantityInput;
 
+    @FindBy(xpath = "//div[@class='wishlist-content']//table")
+    private WebElement tableWithProducts;
+
     public WishlistPage(WebDriver driver) {
         super(driver);
     }
@@ -48,7 +51,12 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public String getEmptyWishlistText() {
+        waitUntilWishlistIsEmpty();
         return getWait10().until(ExpectedConditions.visibilityOf(emptyWishlistText)).getText();
+    }
+
+    public void waitUntilWishlistIsEmpty() {
+        getWait10().until(ExpectedConditions.invisibilityOf(tableWithProducts));
     }
 
     public CartPage addToCartFromWishlist() {
@@ -58,12 +66,13 @@ public class WishlistPage extends BaseMainHeaderPage<CartPage> {
     }
 
     public WishlistPage setItemQuantity(int quantity) {
-        quantityInput.clear();
+        getWait5().until(ExpectedConditions.visibilityOf(quantityInput)).clear();
         quantityInput.sendKeys(String.valueOf(quantity));
         return this;
     }
 
     public int getItemQuantity() {
-        return Integer.parseInt(quantityInput.getAttribute("value"));
+        String itemQnt = getWait5().until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(quantityInput))).getAttribute("value");
+        return Integer.parseInt(itemQnt);
     }
 }

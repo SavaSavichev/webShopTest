@@ -40,7 +40,6 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(textFromMainPage, welcomeText);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
@@ -61,7 +60,6 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(actualProductSize, size);
     }
 
-    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")

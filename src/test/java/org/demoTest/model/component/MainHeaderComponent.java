@@ -3,6 +3,7 @@ package org.demoTest.model.component;
 import org.demoTest.model.*;
 import org.demoTest.model.base.BaseHeaderComponent;
 import org.demoTest.model.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -65,17 +66,21 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     }
 
     public CatalogPage clickCameraPhotoButtonTopMenu() {
-        new Actions(getDriver())
-                .moveToElement(electronicsButtonTopMenu)
-                .pause(1000)
-                .moveToElement(cellPhonesButton)
-                .click()
-                .perform();
+        getWait10().until(ExpectedConditions.elementToBeClickable(electronicsButtonTopMenu)).click();
+//        getWait5().until(ExpectedConditions.presenceOfElementLocated(
+//                By.xpath("//ul[@class='top-menu']//a[@href='/electronics']")));
+//
+//        new Actions(getDriver())
+//                .moveToElement(electronicsButtonTopMenu)
+//                .pause(1000)
+//                .moveToElement(cellPhonesButton)
+//                .click()
+//                .perform();
         return new CatalogPage(getDriver());
     }
 
     public CatalogPage clickJewelryButtonTopMenu() {
-        jewelryButtonTopMenu.click();
+        getWait10().until(ExpectedConditions.elementToBeClickable(jewelryButtonTopMenu)).click();
         return new CatalogPage(getDriver());
     }
 
@@ -85,12 +90,12 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     }
 
     public MainPage clickLogOutButton() {
-        logOutButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(logOutButton)).click();
         return new MainPage(getDriver());
     }
 
     public String getAccountEmail() {
-        return accountEmail.getText();
+        return getWait10().until(ExpectedConditions.visibilityOf(accountEmail)).getText();
     }
 
     public String getRegisterButtonText() {

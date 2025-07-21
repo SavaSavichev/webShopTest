@@ -5,12 +5,15 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.List;
 
 import org.testng.ITestResult;
@@ -75,7 +78,7 @@ public abstract class BaseTest {
 
     protected boolean isUserLoggedIn() {
         try {
-            return getDriver().findElement(By.className("ico-logout")).isDisplayed();
+            return driver.findElement(By.className("ico-logout")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -83,23 +86,26 @@ public abstract class BaseTest {
 
     protected void logoutSafely() {
         try {
-            getDriver().findElement(By.className("ico-logout")).click();
+            driver.findElement(By.className("ico-logout")).click();
         } catch (Exception e) {
             System.out.println("Logout failed or not necessary: " + e.getMessage());
         }
     }
 
     public void clearCartIfNeeded() {
-        getDriver().get("https://demowebshop.tricentis.com/cart");
+        driver.get("https://demowebshop.tricentis.com/cart");
         try {
-            List<WebElement> removeCheckboxes = getDriver().findElements(By.name("removefromcart"));
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='Shopping cart']")));
+
+            List<WebElement> removeCheckboxes = driver.findElements(By.name("removefromcart"));
             if (!removeCheckboxes.isEmpty()) {
                 for (WebElement checkbox : removeCheckboxes) {
                     if (!checkbox.isSelected()) {
                         checkbox.click();
                     }
                 }
-                getDriver().findElement(By.name("updatecart")).click();
+                driver.findElement(By.name("updatecart")).click();
             }
         } catch (Exception e) {
             System.out.println("Cart cleanup failed: " + e.getMessage());
@@ -107,16 +113,19 @@ public abstract class BaseTest {
     }
 
     public void clearWishlistIfNeeded() {
-        getDriver().get("https://demowebshop.tricentis.com/wishlist");
+        driver.get("https://demowebshop.tricentis.com/wishlist");
         try {
-            List<WebElement> removeCheckboxes = getDriver().findElements(By.name("removefromcart"));
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.className("wishlist-content")));
+
+            List<WebElement> removeCheckboxes = driver.findElements(By.name("removefromcart"));
             if (!removeCheckboxes.isEmpty()) {
                 for (WebElement checkbox : removeCheckboxes) {
                     if (!checkbox.isSelected()) {
                         checkbox.click();
                     }
                 }
-                getDriver().findElement(By.name("updatecart")).click();
+                driver.findElement(By.name("updatecart")).click();
             }
         } catch (Exception e) {
             System.out.println("Wishlist cleanup failed: " + e.getMessage());

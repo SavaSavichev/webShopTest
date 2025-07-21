@@ -20,6 +20,9 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     @FindBy(xpath = "//img[@alt='Picture of Smartphone']")
     private WebElement smartphoneButton;
 
+    @FindBy(xpath = "//h2/a[@href='/cell-phones']")
+    private WebElement cellphonesButton;
+
     @FindBy(xpath = "//h2//a[text()='Black & White Diamond Heart']")
     private WebElement diamondHeartButton;
 
@@ -28,7 +31,7 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     }
 
     public CatalogPage clickNotebooksButton() {
-        notebooksButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(notebooksButton)).click();
         return this;
     }
 
@@ -38,17 +41,23 @@ public class CatalogPage extends BaseMainHeaderPage<CatalogPage> {
     }
 
     public ProductPage clickLaptopButton() {
-        laptopButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(laptopButton)).click();
         return new ProductPage(getDriver());
     }
 
+    public CatalogPage clickCellPhoneButton() {
+        getWait5().until(ExpectedConditions.elementToBeClickable(cellphonesButton)).click();
+
+        return this;
+    }
+
     public ProductPage clickSmartphoneButton() {
-        smartphoneButton.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(smartphoneButton)).click();
         return new ProductPage(getDriver());
     }
 
     public ProductPage clickDiamondHeartButton() {
-        diamondHeartButton.click();
+        getWait10().until(ExpectedConditions.elementToBeClickable(diamondHeartButton)).click();
         return new ProductPage(getDriver());
     }
 }

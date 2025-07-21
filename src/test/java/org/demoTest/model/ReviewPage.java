@@ -4,6 +4,7 @@ import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ReviewPage extends BaseMainHeaderPage<ReviewPage> {
 
@@ -35,6 +36,6 @@ public class ReviewPage extends BaseMainHeaderPage<ReviewPage> {
     }
 
     public String getReviewAddResultMessageText() {
-        return reviewAddResultMessage.getText();
+        return getWait5().until(ExpectedConditions.visibilityOf(reviewAddResultMessage)).getText();
     }
 }

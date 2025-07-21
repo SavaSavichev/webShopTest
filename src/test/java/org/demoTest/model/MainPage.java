@@ -2,6 +2,7 @@ package org.demoTest.model;
 
 import org.demoTest.model.base.BaseMainHeaderPage;
 import org.demoTest.runner.TestUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +34,7 @@ public class MainPage extends BaseMainHeaderPage<MainPage> {
     }
 
     public CatalogPage clickComputersButtonSideMenu() {
-        computersButtonSideMenu.click();
+        getWait5().until(ExpectedConditions.elementToBeClickable(computersButtonSideMenu)).click();
         return new CatalogPage(getDriver());
     }
 
@@ -43,13 +44,22 @@ public class MainPage extends BaseMainHeaderPage<MainPage> {
     }
 
     public ProductPage clickLaptopFromFeatured() {
-        TestUtils.scrollWithPauseByActions(new ProductPage(getDriver()), laptopIcon, 1500);
-        getWait2().until(ExpectedConditions.visibilityOf(laptopIcon)).click();
+        getWait10().until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//div[@class='item-box']//img[@title='Show details for 14.1-inch Laptop']")));
+
+        TestUtils.scrollWithPauseByActions(new ProductPage(getDriver()),
+                By.xpath("//div[@class='item-box']//img[@title='Show details for 14.1-inch Laptop']"), 5500);
+        getWait10().until(ExpectedConditions.visibilityOf(laptopIcon)).click();
         return new ProductPage(getDriver());
     }
 
     public ProductPage clickOwnCheapComputer() {
-        TestUtils.scrollWithPauseByActions(new ProductPage(getDriver()), ownCheapComputer, 1500);
+        getWait10().until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//div[@class='product-item']//img[@alt='Picture of Build your own cheap computer']")));
+
+
+        TestUtils.scrollWithPauseByActions(new ProductPage(getDriver()),
+                By.xpath("//div[@class='product-item']//img[@alt='Picture of Build your own cheap computer']"), 1500);
         getWait2().until(ExpectedConditions.visibilityOf(ownCheapComputer)).click();
         return new ProductPage(getDriver());
     }
