@@ -29,7 +29,7 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public String getFirstItemFromSearchList() {
-        return getWait5().until(ExpectedConditions.visibilityOf(firstItemInSearchList)).getText().trim();
+        return getWait10().until(ExpectedConditions.visibilityOf(firstItemInSearchList)).getText().trim();
     }
 
     public List<String> getListOfSearchedItems() {
