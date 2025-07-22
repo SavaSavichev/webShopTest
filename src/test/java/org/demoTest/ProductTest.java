@@ -7,7 +7,6 @@ import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class ProductTest extends BaseTest {

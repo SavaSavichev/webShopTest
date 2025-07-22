@@ -1,5 +1,6 @@
 package org.demoTest.model.component;
 
+import org.demoTest.SearchTest;
 import org.demoTest.model.*;
 import org.demoTest.model.base.BaseHeaderComponent;
 import org.demoTest.model.base.BasePage;
@@ -41,6 +42,12 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
     @FindBy(xpath = "//div[@class='header-links']//a[@class='account']")
     private WebElement accountEmail;
 
+    @FindBy(xpath = "//input[@id='small-searchterms']")
+    private WebElement searchInput;
+
+    @FindBy(xpath = "//input[@value='Search']")
+    private WebElement searchSubmitButton;
+
     public MainHeaderComponent(Page page) {
         super(page);
     }
@@ -67,15 +74,6 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
 
     public CatalogPage clickCameraPhotoButtonTopMenu() {
         getWait10().until(ExpectedConditions.elementToBeClickable(electronicsButtonTopMenu)).click();
-//        getWait5().until(ExpectedConditions.presenceOfElementLocated(
-//                By.xpath("//ul[@class='top-menu']//a[@href='/electronics']")));
-//
-//        new Actions(getDriver())
-//                .moveToElement(electronicsButtonTopMenu)
-//                .pause(1000)
-//                .moveToElement(cellPhonesButton)
-//                .click()
-//                .perform();
         return new CatalogPage(getDriver());
     }
 
@@ -100,5 +98,12 @@ public class MainHeaderComponent<Page extends BasePage<?>> extends BaseHeaderCom
 
     public String getRegisterButtonText() {
         return registerButton.getText();
+    }
+
+    public SearchPage searchItem(String itemName) {
+        getWait5().until(ExpectedConditions.visibilityOf(searchInput)).sendKeys(itemName);
+        searchSubmitButton.click();
+
+        return new SearchPage(getDriver());
     }
 }
