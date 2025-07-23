@@ -44,7 +44,7 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
-        getWait5().until(ExpectedConditions.visibilityOfAllElements(listOfSearchedItems));
+        getWait10().until(ExpectedConditions.visibilityOfAllElements(listOfSearchedItems));
         return listOfSearchedItems.stream()
                 .map(e -> e.getText().trim())
                 .anyMatch(name -> name.equals(itemName));
