@@ -7,6 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -65,5 +66,28 @@ public class SearchTest extends BaseTest {
         Collections.sort(actualItemsList);
 
         Assert.assertEquals(actualItemsList, expectedItemsList);
+    }
+
+    @DataProvider(name="searchData")
+    public Object[][] getSearchData() {
+        return new Object[][] {
+                {"smartphone"},
+                {"Smartphone"},
+                {"SMARTPHONE"}
+        };
+    }
+    @Test(dataProvider = "searchData")
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Search")
+    @Description("Verify that the search functionality is case-insensitive and returns the correct product regardless of text casing")
+    public void testSearchIsCaseInsensitive(String itemName) {
+        final String expectedItem = "Smartphone";
+
+        boolean searchResult = new MainPage(getDriver())
+                .getHeader()
+                .searchItem(itemName)
+                .isItemPresentInSearchResults(expectedItem);
+
+        Assert.assertTrue(searchResult, "Search results do not contain the expected item: " + itemName);
     }
 }
