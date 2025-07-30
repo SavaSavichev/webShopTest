@@ -39,7 +39,7 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public ProductPage clickFirstItemFromSearchList() {
-        getWait5().until(ExpectedConditions.visibilityOf(firstItemFromSearchList)).click();
+        getWait10().until(ExpectedConditions.visibilityOf(firstItemFromSearchList)).click();
 
         return new ProductPage(getDriver());
     }
