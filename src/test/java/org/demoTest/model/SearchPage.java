@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,12 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     @FindBy(xpath = "//h2[@class='product-title']")
     private List<WebElement> listOfSearchedItems;
 
+    @FindBy(xpath = "//h2[@class='product-title']")
+    private WebElement firstItemFromSearchList;
+
+    @FindBy(xpath = "//select[@id='products-orderby']")
+    private WebElement sortBySelect;
+
     public SearchPage(WebDriver driver) {
         super(driver);
     }
@@ -29,6 +36,12 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     public String getFirstItemFromSearchList() {
         return getWait10().until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//h2[@class='product-title']"))).getText().trim();
+    }
+
+    public ProductPage clickFirstItemFromSearchList() {
+        getWait5().until(ExpectedConditions.visibilityOf(firstItemFromSearchList)).click();
+
+        return new ProductPage(getDriver());
     }
 
     public List<String> getListOfSearchedItems() {
@@ -48,5 +61,14 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
         return searchElements.stream()
                 .map(e -> e.getText().trim())
                 .anyMatch(name -> name.equals(itemName));
+    }
+
+    public SearchPage sortByForSearchList(String param) {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
+        Select sizeSelect = new Select(sortBySelect);
+        sizeSelect.selectByVisibleText(param);
+
+        getWait5().until(driver -> sizeSelect.getFirstSelectedOption().getText().equals(param));
+        return this;
     }
 }

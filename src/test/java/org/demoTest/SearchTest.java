@@ -90,4 +90,42 @@ public class SearchTest extends BaseTest {
 
         Assert.assertTrue(searchResult, "Search results do not contain the expected item: " + itemName);
     }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Search")
+    @Description("Verify that the product page can be reached by clicking on a product in the search results")
+    public void testNavigateToProductPageFromSearchResults() {
+        final String expectedItem = "High Definition 3D Camcorder";
+
+        String actualItem = new MainPage(getDriver())
+                .getHeader()
+                .searchItem(expectedItem)
+                .clickFirstItemFromSearchList()
+                .getItemName();
+
+        Assert.assertEquals(actualItem, expectedItem);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Search")
+    @Description("Verify that search results are sorted by price from low to high when selecting the corresponding option")
+    public void testSearchResultsAreSortedByPriceLowToHigh() {
+        final String wordForSearch = "phone";
+        final String sortByParam = "Price: Low to High";
+        final List<String> expectedItemsList = new ArrayList<>(
+                List.of("Used phone", "Phone Cover",
+                        "Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
+                        "Smartphone")
+        );
+
+        List<String> actualItemsList = new MainPage(getDriver())
+                .getHeader()
+                .searchItem(wordForSearch)
+                .sortByForSearchList(sortByParam)
+                .getListOfSearchedItems();
+
+        Assert.assertEquals(actualItemsList, expectedItemsList, "Search results are not sorted by price from low to high");
+    }
 }

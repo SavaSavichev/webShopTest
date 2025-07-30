@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BaseMainHeaderPage<ProductPage> {
 
+    @FindBy(xpath = "//h1")
+    private WebElement itemName;
+
     @FindBy(xpath = "//input[@class='button-1 add-to-cart-button']")
     private WebElement addToCardButton;
 
@@ -70,5 +73,9 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     public ReviewPage clickAddReviewButton() {
         addReviewButton.click();
         return new ReviewPage(getDriver());
+    }
+
+    public String getItemName() {
+        return getWait5().until(ExpectedConditions.visibilityOf(itemName)).getText().trim();
     }
 }

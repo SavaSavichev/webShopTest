@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.testng.ITestResult;
 
-
 public abstract class BaseTest {
 
     private WebDriver driver;
