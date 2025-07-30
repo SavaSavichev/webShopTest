@@ -25,15 +25,15 @@ public abstract class BaseTest {
     @BeforeMethod
     protected void beforeMethod() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments(
-                "--headless=new",
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--window-size=1920,1080",
-                "--disable-gpu",
-                "--remote-allow-origins=*",
-                "--user-data-dir=/tmp/chrome-data"
-        );
+//        chromeOptions.addArguments(
+//                "--headless=new",
+//                "--no-sandbox",
+//                "--disable-dev-shm-usage",
+//                "--window-size=1920,1080",
+//                "--disable-gpu",
+//                "--remote-allow-origins=*",
+//                "--user-data-dir=/tmp/chrome-data"
+//        );
 
         driver = new ChromeDriver(chromeOptions);
 

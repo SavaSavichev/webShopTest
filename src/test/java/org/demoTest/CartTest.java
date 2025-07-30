@@ -51,6 +51,24 @@ public class CartTest extends BaseTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Function")
+    @Description("Verifying that the user can add an item to the cart from the search page")
+    public void testAddItemToCardFromSearchPage() {
+        final String itemName = "Smartphone";
+
+        String itemInCartName = new MainPage(getDriver())
+                .getHeader()
+                .searchItem(itemName)
+                .clickAddToCart()
+                .getHeader()
+                .clickShoppingCart()
+                .getProductName();
+
+        Assert.assertEquals(itemInCartName, itemName);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Function")
     @Description("Verifying that the user can increase the number of items in the cart")
     public void testIncreaseQuantity() {
         final int itemQuantity = 2;

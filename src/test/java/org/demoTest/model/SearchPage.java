@@ -25,8 +25,17 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     @FindBy(xpath = "//select[@id='products-orderby']")
     private WebElement sortBySelect;
 
+    @FindBy(xpath = "//input[@class='button-2 product-box-add-to-cart-button']")
+    private WebElement addToCartFirstItemButton;
+
     public SearchPage(WebDriver driver) {
         super(driver);
+    }
+
+    public SearchPage clickAddToCart() {
+        getWait10().until(ExpectedConditions.visibilityOf(addToCartFirstItemButton)).click();
+
+        return this;
     }
 
     public String getWarningSearchMessage() {
