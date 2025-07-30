@@ -56,8 +56,9 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
-        List<WebElement> searchElements = getWait10().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                By.xpath("//h2[@class='product-title']")));
+        List<WebElement> searchElements = getWait10().until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                        By.xpath("//h2[@class='product-title']")));
+
         return searchElements.stream()
                 .map(e -> e.getText().trim())
                 .anyMatch(name -> name.equals(itemName));
