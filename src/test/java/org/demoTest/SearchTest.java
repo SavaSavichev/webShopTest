@@ -110,25 +110,37 @@ public class SearchTest extends BaseTest {
         Assert.assertEquals(actualItem, expectedItem);
     }
 
-    @Test
+    @DataProvider(name="searchSortByData")
+    public Object[][] getSearchSortByData() {
+        return new Object[][] {
+                {"Position", List.of("Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
+                                "Phone Cover", "Smartphone", "Used phone")},
+                {"Name: A to Z", List.of("Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
+                                "Phone Cover", "Smartphone", "Used phone")},
+                {"Name: Z to A", List.of("Used phone", "Smartphone", "Phone Cover",
+                                "Genuine Leather Handbag with Cell Phone Holder & Many Pockets")},
+                {"Price: Low to High", List.of("Used phone", "Phone Cover",
+                                "Genuine Leather Handbag with Cell Phone Holder & Many Pockets", "Smartphone")},
+                {"Price: High to Low", List.of("Smartphone", "Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
+                                "Phone Cover", "Used phone")},
+                {"Created on", List.of("Phone Cover", "Smartphone",
+                                "Genuine Leather Handbag with Cell Phone Holder & Many Pockets", "Used phone")}
+        };
+    }
+
+    @Test(dataProvider = "searchSortByData")
     @Severity(SeverityLevel.NORMAL)
     @Feature("Search")
-    @Description("Verify that search results are sorted by price from low to high when selecting the corresponding option")
-    public void testSearchResultsAreSortedByPriceLowToHigh() {
+    @Description("Verify that search results are correctly sorted according to the selected sorting option")
+    public void testSearchResultsAreSortedCorrectly(String sortParam, List<String> expectedItemsList) {
         final String wordForSearch = "phone";
-        final String sortByParam = "Price: Low to High";
-        final List<String> expectedItemsList = new ArrayList<>(
-                List.of("Used phone", "Phone Cover",
-                        "Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
-                        "Smartphone")
-        );
 
         List<String> actualItemsList = new MainPage(getDriver())
                 .getHeader()
                 .searchItem(wordForSearch)
-                .sortByForSearchList(sortByParam)
+                .sortByForSearchList(sortParam)
                 .getListOfSearchedItems();
 
-        Assert.assertEquals(actualItemsList, expectedItemsList, "Search results are not sorted by price from low to high");
+        Assert.assertEquals(actualItemsList, expectedItemsList, "Search results are not sorted correctly by: " + sortParam);
     }
 }
