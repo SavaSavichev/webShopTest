@@ -78,7 +78,6 @@ public class SearchTest extends BaseTest {
         };
     }
 
-    @Ignore
     @Test(dataProvider = "searchData")
     @Severity(SeverityLevel.NORMAL)
     @Feature("Search")
