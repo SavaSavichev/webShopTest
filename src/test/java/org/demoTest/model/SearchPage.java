@@ -2,6 +2,7 @@ package org.demoTest.model;
 
 import org.demoTest.model.base.BaseMainHeaderPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -66,15 +67,20 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
-        List<String> searchResults = getWait10().until(driver ->
-                driver.findElements(By.xpath("//h2[@class='product-title']"))
-                        .stream()
-                        .map(WebElement::getText)
-                        .map(String::trim)
-                        .collect(Collectors.toList())
+        List<WebElement> elements = getWait10().until(
+                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//h2[@class='product-title']"))
         );
 
-        return searchResults.contains(itemName);
+        List<String> itemTexts = new ArrayList<>();
+        for (WebElement element : elements) {
+            try {
+                itemTexts.add(element.getText().trim());
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element: " + e.getMessage());
+            }
+        }
+
+        return itemTexts.contains(itemName);
     }
 
     public SearchPage sortByForSearchList(String param) {
