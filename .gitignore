@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 /target/
+screenshots
 *.iml
 .idea
 *.DS_Store
