@@ -35,6 +35,7 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public SearchPage clickAddToCart() {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
         getWait10().until(ExpectedConditions.visibilityOf(addToCartFirstItemButton)).click();
 
         return this;
@@ -45,17 +46,20 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public String getFirstItemFromSearchList() {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
         return getWait10().until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//h2[@class='product-title']"))).getText().trim();
     }
 
     public ProductPage clickFirstItemFromSearchList() {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
         getWait10().until(ExpectedConditions.visibilityOf(firstItemFromSearchList)).click();
 
         return new ProductPage(getDriver());
     }
 
     public List<String> getListOfSearchedItems() {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
         By searchItemLocator = By.xpath("//h2[@class='product-title']");
 
         List<WebElement> elements = getWait5()
@@ -70,6 +74,7 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
+        getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
         String expected = itemName.trim().toLowerCase();
 
         getWait10().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='product-title']")));
