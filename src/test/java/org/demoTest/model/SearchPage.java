@@ -71,16 +71,19 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
                 ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//h2[@class='product-title']"))
         );
 
-        List<String> itemTexts = new ArrayList<>();
+        String expectedLower = itemName.toLowerCase();
+
         for (WebElement element : elements) {
             try {
-                itemTexts.add(element.getText().trim());
+                if (element.getText().trim().toLowerCase().equals(expectedLower)) {
+                    return true;
+                }
             } catch (StaleElementReferenceException e) {
                 System.out.println("Stale element: " + e.getMessage());
             }
         }
 
-        return itemTexts.contains(itemName);
+        return false;
     }
 
     public SearchPage sortByForSearchList(String param) {
