@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchPage extends BaseMainHeaderPage<ProductPage> {
 
@@ -65,12 +66,15 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
-        List<WebElement> searchElements = getWait10().until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-                        By.xpath("//h2[@class='product-title']")));
+        List<String> searchResults = getWait10().until(driver ->
+                driver.findElements(By.xpath("//h2[@class='product-title']"))
+                        .stream()
+                        .map(WebElement::getText)
+                        .map(String::trim)
+                        .collect(Collectors.toList())
+        );
 
-        return searchElements.stream()
-                .map(e -> e.getText().trim())
-                .anyMatch(name -> name.equals(itemName));
+        return searchResults.contains(itemName);
     }
 
     public SearchPage sortByForSearchList(String param) {
