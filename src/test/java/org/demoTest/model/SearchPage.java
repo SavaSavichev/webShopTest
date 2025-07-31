@@ -47,8 +47,8 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
 
     public String getFirstItemFromSearchList() {
         getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
-        return getWait10().until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//h2[@class='product-title']"))).getText().trim();
+
+        return getWait10().until(ExpectedConditions.visibilityOf(firstItemFromSearchList)).getText().trim();
     }
 
     public ProductPage clickFirstItemFromSearchList() {
@@ -60,10 +60,9 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
 
     public List<String> getListOfSearchedItems() {
         getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
-        By searchItemLocator = By.xpath("//h2[@class='product-title']");
 
-        List<WebElement> elements = getWait5()
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(searchItemLocator));
+        List<WebElement> elements = getWait10()
+                .until(ExpectedConditions.visibilityOfAllElements(listOfSearchedItems));
 
         List<String> resultItemsList = new ArrayList<>();
         for (WebElement element : elements) {
@@ -75,27 +74,15 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
 
     public boolean isItemPresentInSearchResults(String itemName) {
         getWait10().until(ExpectedConditions.visibilityOf(sortBySelect));
-        String expected = itemName.trim().toLowerCase();
 
-        getWait10().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='product-title']")));
+        getWait10().until(ExpectedConditions.visibilityOf(firstItemFromSearchList));
 
-        List<String> titles = new ArrayList<>();
+        List<String> titles = getWait10().until(ExpectedConditions.visibilityOfAllElements(listOfSearchedItems))
+                .stream()
+                .map(e -> e.getText().trim())
+                .toList();
 
-        for (int i = 0; i < 3; i++) {
-            try {
-                titles = getDriver().findElements(By.xpath("//h2[@class='product-title']"))
-                        .stream()
-                        .map(e -> e.getText().trim().toLowerCase())
-                        .collect(Collectors.toList());
-                break;
-            } catch (StaleElementReferenceException e) {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException ignored) {}
-            }
-        }
-
-        return titles.contains(expected);
+        return titles.contains(itemName);
     }
 
     public SearchPage sortByForSearchList(String param) {

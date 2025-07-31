@@ -8,7 +8,6 @@ import org.demoTest.model.MainPage;
 import org.demoTest.runner.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

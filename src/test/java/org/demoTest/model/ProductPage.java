@@ -31,6 +31,9 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     @FindBy(xpath = "//p[@class='content']")
     private WebElement noticeBar;
 
+    @FindBy(xpath = "//div[@class='product-name']/h1")
+    private WebElement productName;
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -76,9 +79,6 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public String getItemName() {
-        By itemNameLocator = By.xpath("//div[@class='product-name']/h1");
-        WebElement element = getWait5().until(ExpectedConditions.visibilityOfElementLocated(itemNameLocator));
-
-        return element.getText().trim();
+        return getWait10().until(ExpectedConditions.visibilityOf(productName)).getText().trim();
     }
 }
