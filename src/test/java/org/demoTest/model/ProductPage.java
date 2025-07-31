@@ -76,6 +76,9 @@ public class ProductPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public String getItemName() {
-        return getWait5().until(ExpectedConditions.visibilityOf(itemName)).getText().trim();
+        By itemNameLocator = By.xpath("//div[@class='product-name']/h1");
+        WebElement element = getWait5().until(ExpectedConditions.visibilityOfElementLocated(itemNameLocator));
+
+        return element.getText().trim();
     }
 }
