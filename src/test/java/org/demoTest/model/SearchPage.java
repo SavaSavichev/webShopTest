@@ -67,23 +67,27 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public boolean isItemPresentInSearchResults(String itemName) {
-        List<WebElement> elements = getWait10().until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//h2[@class='product-title']"))
-        );
+        String expected = itemName.trim().toLowerCase();
 
-        String expectedLower = itemName.toLowerCase();
+        getWait10().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='product-title']")));
 
-        for (WebElement element : elements) {
+        List<String> titles = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
             try {
-                if (element.getText().trim().toLowerCase().equals(expectedLower)) {
-                    return true;
-                }
+                titles = getDriver().findElements(By.xpath("//h2[@class='product-title']"))
+                        .stream()
+                        .map(e -> e.getText().trim().toLowerCase())
+                        .collect(Collectors.toList());
+                break;
             } catch (StaleElementReferenceException e) {
-                System.out.println("Stale element: " + e.getMessage());
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ignored) {}
             }
         }
 
-        return false;
+        return titles.contains(expected);
     }
 
     public SearchPage sortByForSearchList(String param) {
