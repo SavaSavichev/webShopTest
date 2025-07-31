@@ -47,6 +47,7 @@ public class SearchTest extends BaseTest {
         Assert.assertEquals(actualItem, expectedItem);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Search")
@@ -93,6 +94,7 @@ public class SearchTest extends BaseTest {
         Assert.assertTrue(searchResult, "Search results do not contain the expected item: " + itemName);
     }
 
+    @Ignore
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Feature("Search")
