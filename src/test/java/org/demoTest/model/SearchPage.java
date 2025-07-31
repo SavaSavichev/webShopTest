@@ -56,11 +56,14 @@ public class SearchPage extends BaseMainHeaderPage<ProductPage> {
     }
 
     public List<String> getListOfSearchedItems() {
-        List<String> resultItemsList = new ArrayList<>();
-        getWait5().until(ExpectedConditions.visibilityOfAllElements(listOfSearchedItems));
+        By searchItemLocator = By.xpath("//h2[@class='product-title']");
 
-        for (WebElement listOfSearchedItem : listOfSearchedItems) {
-            resultItemsList.add(listOfSearchedItem.getText().trim());
+        List<WebElement> elements = getWait5()
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(searchItemLocator));
+
+        List<String> resultItemsList = new ArrayList<>();
+        for (WebElement element : elements) {
+            resultItemsList.add(element.getText().trim());
         }
 
         return resultItemsList;
